@@ -22,16 +22,12 @@ exports.handler = async function (event, context) {
   if (secFetchMode === "cors" && secFetchSite === "same-origin") {
     let { manufacturer, limit } = event.queryStringParameters;
 
-    // manufacturer = manufacturer || 'boeing';
-    // limit = limit || 3;
-
     if (!manufacturer || !limit) {
       return responseHandler(400, { message: "Search paramether(s) missing" });
     }
 
     try {
       const url = `${ENDPOINT}?manufacturer=${manufacturer}&limit=${limit}`;
-      // const url = `${ENDPOINT}?manfacturer=${manufacturer}&limit=${limit}`;
 
       const data = await fetch(url, {
         method: "GET",
